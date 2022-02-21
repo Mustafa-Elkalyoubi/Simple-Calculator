@@ -1,5 +1,6 @@
 .button-wrapper {
-  height: 4em;
+  height: 7vw;
+  width: 7vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,17 +11,23 @@
       -ms-flex-align: center;
           align-items: center;
   font-weight: lighter;
-  font-size: 1.4vw;
+  font-size: 2vw;
   background-color: #e0e1e6;
-  color: #888888;
+  color: black;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
   outline: 1px solid #888;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .button-wrapper:hover {
   cursor: pointer;
+  -webkit-filter: opacity(75%);
+          filter: opacity(75%);
 }
 
 .operator {

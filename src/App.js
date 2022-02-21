@@ -10,28 +10,34 @@ class App extends Component {
     super(props);
     this.state = {
       input: "",
+      history: [],
     };
   }
 
   addToInput = (val) => {
     this.setState({
-      input: this.state.input + val,
+      input: this.state.input.toString() + val,
     });
   };
 
-  handleEqual = () => {
+  handleEqual = (eq) => {
+    let ou = math.evaluate(eq);
+    const history = this.state.history.slice();
+    const input = this.state.input.slice();
     this.setState({
-      input: math.evaluate(this.state.input),
+      input: ou,
+      history: history.concat([{ equation: eq, output: ou }]),
     });
   };
 
   render() {
+    // Calculator
     let calcSquares = [];
     let symbols = ["+", "/", "*"];
     let buttonKey;
+
     for (let row = 0; row < 3; row++) {
       let calcRow = [];
-      buttonKey = 0;
       for (let col = 0; col < 3; col++) {
         buttonKey = row * 3 + col;
         calcRow.push(
@@ -52,6 +58,18 @@ class App extends Component {
       );
     }
     calcSquares.reverse();
+
+    // History
+    let fullHistory = [];
+    for (var i in this.state.history) {
+      let input = this.state.history[i];
+      fullHistory.push(
+        <li key={i}>
+          {input.equation} = {input.output}
+        </li>
+      );
+    }
+
     return (
       <div className="app">
         <div className="calc-wrapper">
@@ -60,7 +78,9 @@ class App extends Component {
           <div className="row">
             <Button handleClick={this.addToInput}>.</Button>
             <Button handleClick={this.addToInput}>0</Button>
-            <Button handleClick={() => this.handleEqual()}>=</Button>
+            <Button handleClick={() => this.handleEqual(this.state.input)}>
+              =
+            </Button>
             <Button handleClick={this.addToInput}>-</Button>
           </div>
           <div className="row">
@@ -68,6 +88,12 @@ class App extends Component {
               Clear
             </ClearButton>
           </div>
+        </div>
+        <div className="history">
+          <ul className="history-list">
+            <h1>History</h1>
+            {fullHistory}
+          </ul>
         </div>
       </div>
     );

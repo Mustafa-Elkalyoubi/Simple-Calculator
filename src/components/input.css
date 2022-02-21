@@ -10,10 +10,10 @@
       -ms-flex-align: center;
           align-items: center;
   font-weight: bold;
-  font-size: 1.4vw;
+  font-size: 3vw;
+  line-height: 0.5vw;
   background-color: black;
   color: white;
-  padding: 0.5vw;
   outline: 1px solid #888888;
 }
 /*# sourceMappingURL=input.css.map */
